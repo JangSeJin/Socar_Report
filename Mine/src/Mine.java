@@ -60,6 +60,19 @@ public class Mine {
 				count--;
 			}
 		}
+
+//		// test
+//		mArray[1][2] = MINE;
+//		mArray[2][3] = MINE;
+//		mArray[3][5] = MINE;
+//		mArray[5][2] = MINE;
+//		mArray[6][2] = MINE;
+//		mArray[6][8] = MINE;
+//		mArray[8][0] = MINE;
+//		mArray[9][1] = MINE;
+//		mArray[1][2] = MINE;
+//		mArray[0][9] = MINE;
+
 	}
 
 	/**
@@ -68,29 +81,13 @@ public class Mine {
 	private static void findMine() {
 		for (int i = 0; i < ROW_COUNT; i++) {
 			for (int j = 0; j < COL_COUNT; j++) {
-				count(i, j);
-			}
-		}
-	}
-
-	/**
-	 * 지뢰 숫자 카운트
-	 * 
-	 * @param row
-	 * @param col
-	 * @return 출력할 카운트 값
-	 */
-	private static String count(int row, int col) {
-		for (int i = 0; i < ROW_COUNT; i++) {
-			for (int j = 0; j < COL_COUNT; j++) {
-				if (isEmpty(row, col) && !isMine(row, col)) {
-					return mArray[row][col] = " " + countArroundMine(row, col) + " ";
+				if (isEmpty(i, j) && !isMine(i, j)) {
+					mArray[i][j] = " " + count(i, j) + " ";
 				}
 			}
 		}
-		return mArray[row][col];
 	}
-
+	
 	/**
 	 * 지뢰 주변 숫자 카운트
 	 * 
@@ -98,7 +95,7 @@ public class Mine {
 	 * @param col
 	 * @return 지뢰 주변 숫자 카운트
 	 */
-	private static int countArroundMine(int row, int col) {
+	private static int count(int row, int col) {
 		int count = 0;
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
